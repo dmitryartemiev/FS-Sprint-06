@@ -9,64 +9,103 @@ class LList {
   }
   add(value) {
     let node = new LLData(value);
-    if (this.length ===0){
-        this.head = node;
-    }else{
-        let current = this.head;
-        while (current.next){
-            current = current.next;
-        }
-        current.next = new LLData(value);
+    if (this.length === 0) {
+      this.head = node;
+    } else {
+      let current = this.head;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = new LLData(value);
     }
     this.length++;
   }
-  [Symbol.iterator] = () => {
-    return {
-      current: this.next,
-      structure: this.data,
-      next() {
-        if (this.structure[this.current] == undefined) {
-          return { done: true };
-        } else {
-          return { done: false, value: this.structure[this.current++] };
-        }
-      },
-    };
+  [Symbol.iterator] = function* () {
+    var current = this.head;
+    while (current) {
+      yield current.value;
+      current = current.next;
+    }
   };
-  getFirst(){
-
+  getFirst() {
+    if (!this.head) {
+      return null;
+    } else {
+      return this.head;
+    }
   }
-  getLast(){
-
+  getLast() {
+    if (!this.head) {
+      return null;
+    } else {
+      while (this.head) {
+        if (!this.head.next) {
+          return this.head;
+        }
+        this.head = this.head.next;
+      }
+    }
   }
-  addFromArray(array){
-
+  addFromArray(array) {
+    array.forEach((element) => {
+      this.add(element);
+    });
   }
-  remove(value){
-
+  remove(value) {
+    if (!this.head) {
+      return "there is nothing to remove";
+    } else {
+      while (this.head) {
+        if (this.head.value === value) {
+          this.head = this.head.next;
+          return this.head;
+        }
+      }
+    }
   }
-  removeAll(){
-
+  removeAll(value) {
+    if (!this.head) {
+      return "there is nothing to remove";
+    } else {
+// hz??
+    }
   }
-  contains(){
-
+  contains(value) {
+    if (!this.head) {
+      return "there is an empty list";
+    } else {
+      if ([...this].includes(value)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
-  clear(){
 
+  clear() {
+    this.head = null;
   }
-  count(){
-
+  count() {
+    if (!this.head) {
+      return "there is an empty list";
+    } else {
+      return this.length;
+    }
   }
-  toString(){
-
+  toString() {
+    if (!this.head) {
+      return "there is an empty list";
+    } else {
+      return [...this].join(", ");
+    }
   }
-  getIterator(){
-
-  }
-  filter(callback){
-
+  filter(callback) {
+    if (!this.head) {
+      return "there is an empty list";
+    } else {
+      return [...this].filter(callback);
+    }
   }
 }
 
-module.exports = {LList};
-
+module.exports = { LList };
