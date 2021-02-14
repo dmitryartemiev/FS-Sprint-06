@@ -7,7 +7,7 @@
 const {Avenger} = require("./Avenger");
 
 const stark = new Avenger({
-  name: 'Tony Stark',
+  heroName: 'Tony Stark',
   alias: 'Iron Man',
   gender: 'man',
   age: 38,
@@ -15,7 +15,7 @@ const stark = new Avenger({
 })
 
 const natasha = new Avenger({
-  name: 'Natasha Romanoff',
+  heroName: 'Natasha Romanoff',
   alias: 'Black Widow',
   gender: 'woman',
   age: 35,
