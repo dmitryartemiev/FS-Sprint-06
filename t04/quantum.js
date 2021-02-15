@@ -1,16 +1,16 @@
 "use strict";
 
-
-
 function calculateTime() {
   let result = [];
   let date = new Date(1939, 0, 1);
   let now = new Date();
-  result.push(Math.floor(-(date.getYear() - now.getYear()) / 7));
-  result.push(Math.floor(-(date.getMonth() - now.getMonth())/ 7));
-  result.push(Math.floor( -(date.getDate() - now.getDate())/7));
+  let difference = (Math.abs(date) + Number(now)) / 7;
+  let quantumDate = new Date(Number(date) + Number(difference));
+  result.push(quantumDate.getYear() - date.getYear());
+  result.push(quantumDate.getMonth() - date.getMonth());
+  result.push(quantumDate.getDate() - date.getDate());
   return result;
 }
 
-calculateTime()
+calculateTime();
 module.exports.calculateTime = calculateTime;
