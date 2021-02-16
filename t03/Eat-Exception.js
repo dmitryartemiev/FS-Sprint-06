@@ -1,13 +1,11 @@
-'use strict';
+class EatException extends Error {
 
-
-class EatException {
-    constructor(){
+    constructor(stack) {
+        super(stack);
+        this.name = 'EatException';
+        this.message = 'No more junk food, dumpling';
     }
-    error(){
-        console.error('No more junk food, dumpling')
-    }
-
 }
 
-module.exports.EatException = EatException;
+module.exports = EatException;
+
